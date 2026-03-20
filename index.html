@@ -55,7 +55,7 @@
     <div id="result"></div>
 
     <script>
-        // 🔑 REPLACE WITH YOUR ACTUAL GEMINI API KEY
+        // 🔑 API key (REVOKE THIS KEY AFTER TESTING – it's public now)
         const API_KEY = "AIzaSyDxF7uEC84uPDWAMKd4j6PaNyloikcsY_8";
 
         const submitBtn = document.getElementById('submitBtn');
@@ -69,14 +69,11 @@
                 return;
             }
 
-            // Show loading state
             showResult("🤔 Thinking...", false, true);
 
             try {
-                // Build the prompt
                 const prompt = `The user is interested in "${interest}". Based on this interest, suggest one specific job title, a short description of what they would do, and a brief reason why this job fits their interest. Keep it concise and friendly.`;
 
-                // Call Gemini API with the correct model (gemini-1.5-flash)
                 const response = await fetch(
                     `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
                     {
@@ -97,7 +94,6 @@
 
                 const data = await response.json();
                 const jobSuggestion = data.candidates[0].content.parts[0].text;
-
                 showResult(jobSuggestion);
             } catch (error) {
                 console.error(error);
@@ -113,4 +109,4 @@
         }
     </script>
 </body>
-  </html>
+</html>
